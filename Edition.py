@@ -80,7 +80,7 @@ def menu_edition():
             print("Entrée invalide. Veuillez entrer un nombre entre 1 et 5.")
     if (x == 1):
         print("Vous avez choisi : Lire un automate depuis la console")
-        entre_automate()
+        print("Voici votre automate : ", entre_automate())
         menu_edition()
     if (x == 2):
         print("Vous avez choisi : Afficher un automate.")
