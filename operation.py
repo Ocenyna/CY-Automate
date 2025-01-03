@@ -19,7 +19,7 @@ def entre_automate():
             # Vérifier que tous les éléments internes sont valides (des nombre)
             for row in automate:
                 if not all(isinstance(element, int) for element in row):
-                    raise ValueError("Tous les éléments de l'automate doivent être des chaînes ou caractères.")
+                    raise ValueError("Tous les éléments de l'automate doivent être des chiffres.")
 
             # Si tout est correct, sortir de la boucle
             break
@@ -30,21 +30,15 @@ def entre_automate():
 
     return automate
 
-
-def diagonal_2(matrice):
-    l=[]
-    if (estCarre(matrice)=="True"):
-        return matrice
-    else:
-        for i in range(len(matrice)):
-            l.append(matrice[i][len(matrice)-i-1])
-    return l
+#AFFICHER LE MIROIR D'UN AUTOMATE 
 
 def miroir(automate):
     l=[]
     for i in range(len(automate)):
             l.append(automate[len(automate)-i-1])
     return l
+
+#SAVOIR SI UN AUTOMATE EST COMPLET 
 
 def estComplet(automate):
     etat = len(automate)
@@ -55,8 +49,11 @@ def estComplet(automate):
                 return False
     return True
 
+#RENDRE UN AUTOMATE COMPLET 
+
 def rendreComplet(automate):
     if (estComplet(automate)=="True"):
+        print("L'automate est déjà complet")
         return automate
     else :
         new_etat = len(automate)
@@ -68,9 +65,13 @@ def rendreComplet(automate):
                     automate[i][j]=new_etat
     return automate
 
+#CONCATENER DEUX AUTOMATES 
+
 def concat(a,b):
     a.append(b)
     return a
+
+#MENU DES OPERATIONS
 
 def menu_op():
     a = entre_automate()
