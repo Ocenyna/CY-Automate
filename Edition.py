@@ -1,6 +1,6 @@
 import numpy as np
 import os
-
+from menu import menu_principal
 #DEFINITION D'AUTOMATE
 
 class Automate:
