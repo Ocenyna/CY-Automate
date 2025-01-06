@@ -38,6 +38,7 @@ Les automates peuvent être représentés sous forme de dictionnaire ou de matri
 3. Exécutez le fichier principal pour démarrer le menu principal.
 
 ```bash
+make
 python menu.py
 ```
 
