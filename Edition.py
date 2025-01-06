@@ -156,6 +156,7 @@ def modifier_automate(automate):
                 return 0
             else:
                 print("Choix invalide.")
+    return 0
 
 #RECUPERER UN FICHIER
 import os
