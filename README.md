@@ -12,8 +12,6 @@ Ce projet est un éditeur textuel pour manipuler et analyser des automates finis
    - **Modifier un automate** : Ajoute ou modifie des transitions ou des états existants.
    - **Sauvegarder un automate** : Enregistre un automate dans un fichier pour une utilisation ultérieure.
    - **Afficher un automate** : Affiche les états, les symboles et les transitions d'un automate.
-   - **Supprimer un automate** : Permet de supprimer un automate en mémoire.
-   - **Afficher la matrice d'un automate** : Affiche l'automate sous forme de matrice d'adjacence.
    - **Retour au menu principal** : Permet de revenir au menu principal depuis le sous-menu de manipulation.
 
 2. **Opérations sur les automates** :
@@ -21,15 +19,12 @@ Ce projet est un éditeur textuel pour manipuler et analyser des automates finis
    - **Est complet ?** : Vérifie si l'automate est complet.
    - **Rendre déterministe** : Convertit un automate en un automate déterministe.
    - **Rendre complet** : Ajoute les transitions manquantes pour rendre l'automate complet.
-   - **Cloner un automate** : Crée une nouvelle copie de l'automate en mémoire.
-   - **Calculer le complément** : Calcule le complément d'un automate (nécessite un automate complet).
    - **Miroir d'un automate** : Inverse les transitions de l'automate.
    - **Concaténation de deux automates** : Concatène deux automates pour former un nouvel automate.
-   - **Produit de deux automates** : Effectue le produit cartésien de deux automates.
-   - **Nettoyer un automate** : Supprime les états inaccessibles.
-
+   - **Retour au menu principal** : Permet de revenir au menu principal depuis le sous-menu de manipulation.
+  
 3. **Langage et expression régulière** :
-   - (À définir selon les spécifications du projet ou les fonctionnalités souhaitées)
+   - Vérifie si un mot appartient à un langage
 
 ## Structure de données
 
@@ -40,18 +35,18 @@ Les automates peuvent être représentés sous forme de dictionnaire ou de matri
 
 1. Clonez ce dépôt ou téléchargez le code source.
 2. Assurez-vous d'avoir Python installé (version 3.x recommandée).
-3. Exécutez le fichier principal pour démarrer l'éditeur textuel.
+3. Exécutez le fichier principal pour démarrer le menu principal.
 
 ```bash
-python editeur_automate.py
+python menu.py
 ```
 
 ## Guide d'utilisation
 
 1. **Démarrage** : Après avoir lancé le programme, choisissez parmi les options du menu pour manipuler ou effectuer des opérations sur les automates.
-2. **Manipulation d'automates** : Sélectionnez les options pour créer, modifier ou afficher un automate.
-3. **Opérations sur les automates** : Accédez aux fonctionnalités avancées pour vérifier, transformer ou calculer des propriétés d'automates. (NON DISPONIBLES POUR L'INSTANT)
-4. **Langage et expression régulière** : Utilisez les outils pour travailler avec des expressions régulières (NON DISPONIBLES POUR L'INSTANT)
+2. **Edition** : Sélectionnez les options pour créer, sauvegarder ou afficher un automate.
+3. **Opération** : Accédez aux fonctionnalités avancées pour vérifier, transformer ou calculer des propriétés d'automates.
+4. **Langage et expression régulière** : Utilisez les outils pour travailler avec des expressions régulières 
 
 
 ## Améliorations futures
@@ -62,7 +57,7 @@ Ce README couvre les fonctionnalités principales de l'éditeur d'automates. N'h
 
 ## Fichiers
 
-- `editeur_automate.py` : fichier principal pour exécuter le programme.
+- `menu.py` : fichier principal pour exécuter le programme.
 - `README.md` : ce fichier, contenant la documentation du projet.
 
 ## Licence
