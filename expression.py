@@ -60,4 +60,4 @@ def menu_expression():
         menu_expression()
     if (x == 2):
         print("Vous avez choisi : Quitter. Retour au menu principal !")
-        menu_principal()
+        return
