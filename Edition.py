@@ -97,7 +97,7 @@ def modifier_automate(automate):
             print("3. Ajouter une transition")
             print("4. Supprimer une transition")
             print("5. Retour au menu principal")
-            choix = input("Votre choix : ")
+            choix = int(input("Votre choix : "))
 
             if choix == "1":
                 while True :
@@ -157,7 +157,9 @@ def modifier_automate(automate):
                 return 0
             else:
                 print("Choix invalide.")
-    return 0
+        except ValueError:
+                print("Choix invalide.")
+
 
 #RECUPERER UN FICHIER
 
