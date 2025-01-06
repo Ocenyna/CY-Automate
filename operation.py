@@ -129,4 +129,4 @@ def menu_op():
         menu_op()
     if (x == 7):
         print("Vous avez choisi : Quitter. Retour au menu principal !")
-        menu_pricipal()
+        return
