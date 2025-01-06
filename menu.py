@@ -6,11 +6,10 @@ def menu_principal():
                 "Sélectionnez votre option :\n\n"
                 "1. Edition\n"
                 "2. Opération\n"
-                "3. Analyse\n"
-                "4. Expression régulière\n"
-                "5. Quitter\n\n"
+                "3. Analyse et Expression régulière\n"
+                "4. Quitter\n\n"
             ))
-            if 1 <= x <= 5:
+            if 1 <= x <= 4:
                 break
             else:
                 print("Votre option ne fait pas partie des propositions ! Veuillez réessayer.")
@@ -23,11 +22,8 @@ def menu_principal():
         print("Vous avez choisi : Opération.")
         menu_op()
     if (x == 3):
-        print("Vous avez choisi : Analyse.")
+        print("Vous avez choisi : Analyse et Expression régulière.")
         menu_expression()
     if (x == 4):
-        print("Vous avez choisi : Expression régulière.")
-
-    if (x == 5):
         print("Vous avez choisi : Quitter. Au revoir !")
         return 0
