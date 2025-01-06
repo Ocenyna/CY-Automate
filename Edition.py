@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 #DEFINITION D'AUTOMATE
 
@@ -159,7 +160,7 @@ def modifier_automate(automate):
     return 0
 
 #RECUPERER UN FICHIER
-import os
+
 
 def rec():
     while True:
