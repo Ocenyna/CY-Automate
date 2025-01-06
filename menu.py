@@ -1,3 +1,7 @@
+from edition import menu_edition
+from operation import menu_op
+from expression import menu_expression
+
 def menu_principal():
     while True:
         try:
