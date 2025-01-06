@@ -1,5 +1,5 @@
 #MENU OPERATION
-
+from menu import menu_principal
 
 #AFFICHER UN AUTOMATE
 def affiche(matrice):
