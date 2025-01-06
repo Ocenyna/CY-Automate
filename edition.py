@@ -255,5 +255,5 @@ def menu_edition():
         menu_edition()
     if (x == 6):
         print("Vous avez choisi : Quitter. Retour au menu principal !")
-        menu_principal()
+        return
 
