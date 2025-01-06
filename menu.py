@@ -22,12 +22,16 @@ def menu_principal():
     if (x == 1):
         print("Vous avez choisi : Edition.")
         menu_edition()
+        menu_principal()
     if (x == 2):
         print("Vous avez choisi : Opération.")
         menu_op()
+        menu_principal()
     if (x == 3):
         print("Vous avez choisi : Analyse et Expression régulière.")
         menu_expression()
+        menu_principal()
     if (x == 4):
         print("Vous avez choisi : Quitter. Au revoir !")
         return 0
+menu_principal()
