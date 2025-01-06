@@ -74,7 +74,6 @@ def estdeterministe(tab):
                 if(tab[i][j][k]==0):
                     a=a+1
             print(a)
-            input("wait")
             if(a>=2):
                 return False
             a = 0
