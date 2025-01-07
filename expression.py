@@ -1,5 +1,6 @@
 import re
-from menu import menu_principal
+
+#Vérifier si un mot appertient à une expression régulière
 
 def verifier_expression_reguliere(expression, mot):
     try:
@@ -17,7 +18,7 @@ def menu_expression():
         try:
             # Demander à l'utilisateur une expression régulière
             expression = input(
-                "Bienvenue sur le menu Expression régulière !\n"
+                "Bienvenue sur le menu Analyse et Expression régulière !\n"
                 "Entrez une expression régulière : \n"
             )
             # Vérification de l'expression régulière
@@ -44,7 +45,7 @@ def menu_expression():
     while True:
         try:
             x = int(input(
-                "Bienvenu sur le menu Edition !\n"
+                "Bienvenu sur le menu Analyse et Expression régulière !\n"
                 "Sélectionnez votre option :\n\n"
                 "1. Entrez une expression régulière de nouveau \n"
                 "2. Quitter\n"
