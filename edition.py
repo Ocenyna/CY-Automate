@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from menu import menu_principal
+
 #DEFINITION D'AUTOMATE
 
 class Automate:
@@ -58,6 +58,7 @@ def entre_automate():
 
             # Si tout est correct, sortir de la boucle
             break
+            # Anticiper les erreurs
         except (SyntaxError, NameError):
             print("Entrée invalide. Veuillez entrer un automate valide (par exemple : [[1, 2, 3], [4, 5, 6], [7, 8, 9]]).")
         except ValueError as ve:
@@ -99,7 +100,7 @@ def modifier_automate(automate):
             print("5. Retour au menu principal")
             choix = int(input("Votre choix : "))
 
-            if choix == "1":
+            if (choix == "1"):
                 while True :
                     try :
                         etat = input("Entrez le nouvel état : ")
@@ -113,7 +114,7 @@ def modifier_automate(automate):
                 print(f"État {etat} ajouté.")
                 return automate
 
-            elif choix == "2":
+            elif (choix == "2"):
                 while True :
                     try :
                         etat = input("Entrez l'état à supprimer : ")
@@ -132,7 +133,7 @@ def modifier_automate(automate):
                 print(f"État {etat} supprimé.")
                 return automate
 
-            elif choix == "3":
+            elif (choix == "3"):
                 source = input("Entrez l'état source : ")
                 symbole = input("Entrez le symbole : ")
                 cible = input("Entrez l'état cible : ")
@@ -142,7 +143,7 @@ def modifier_automate(automate):
                 print(f"Transition ({source}, {symbole}, {cible}) ajoutée.")
                 return automate
 
-            elif choix == "4":
+            elif (choix == "4"):
                 source = input("Entrez l'état source : ")
                 symbole = input("Entrez le symbole : ")
                 cible = input("Entrez l'état cible : ")
@@ -153,7 +154,7 @@ def modifier_automate(automate):
                     print(f"Transition ({source}, {symbole}, {cible}) supprimée.")
                     return automate
 
-            elif choix == "5":
+            elif (choix == "5"):
                 return 0
             else:
                 print("Choix invalide.")
@@ -202,6 +203,7 @@ def charger_automate(fichier):
         etat_initial = lignes[4].split(":")[1].strip()
         etats_finaux = set(lignes[5].split(":")[1].strip().split())
         return Automate(etats, alphabet, transitions, etat_initial, etats_finaux)
+        # Anticiper les erreurs
     except FileNotFoundError:
         print("Fichier non trouvé.")
         return None
@@ -245,7 +247,7 @@ def menu_edition():
     if (x == 4):
         print("Vous avez choisi : Charger un automate")
         d = rec()
-        charger_automate(fichier)
+        charger_automate(d)
         menu_edition()
     if (x == 5):
         print("Vous avez choisi : Modifier un automate")
