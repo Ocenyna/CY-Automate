@@ -1,11 +1,14 @@
 #MENU OPERATION
-from menu import menu_principal
+
 
 #AFFICHER UN AUTOMATE
+
 def affiche(matrice):
     print(matrice)
     return 0
+    
 #LIRE UN AUTOMATE
+
 def entre_automate():
     while True:
         try:
@@ -30,6 +33,7 @@ def entre_automate():
 
     return automate
 
+#Créer le miroir d'un automate
 
 def miroir(automate):
     l=[]
@@ -45,6 +49,8 @@ def estComplet(automate):
             if(automate[i][j]==-1):
                 return False
     return True
+    
+#Vérifier que l'automate est complet
 
 def rendreComplet(automate):
     if (estComplet(automate)=="True"):
@@ -58,10 +64,14 @@ def rendreComplet(automate):
                 if(automate[i][j]==-1):
                     automate[i][j]=new_etat
     return automate
+    
+#Concaténation de deux automates 
 
 def concat(a,b):
     a.append(b)
     return a
+    
+#Vérifier que l'automate est déterministe
 
 def estdeterministe(tab):
     a = 0
@@ -74,10 +84,59 @@ def estdeterministe(tab):
                 if(tab[i][j][k]==0):
                     a=a+1
             print(a)
+            input("wait")
             if(a>=2):
                 return False
             a = 0
     return True
+
+#Rendre un automate déterministe
+
+def rendre_deterministe(self):
+        """
+        Convertit un automate non déterministe en un automate déterministe.
+        """
+        nouvel_etats = set()
+        nouvelles_transitions = {}
+        nouvel_etat_initial = frozenset([self.etat_initial])
+        nouveaux_etats_finaux = set()
+
+        # File pour traiter les nouveaux états
+        a_traiter = [nouvel_etat_initial]
+        nouvel_etats.add(nouvel_etat_initial)
+
+        while a_traiter:
+            etat_courant = a_traiter.pop(0)
+
+            for symbole in self.alphabet:
+                # Calculer l'ensemble des états atteignables
+                etats_atteints = set()
+                for sous_etat in etat_courant:
+                    if (sous_etat, symbole) in self.transitions:
+                        etats_atteints.update(self.transitions[(sous_etat, symbole)])
+
+                if etats_atteints:
+                    nouvel_etat = frozenset(etats_atteints)
+
+                    if nouvel_etat not in nouvel_etats:
+                        nouvel_etats.add(nouvel_etat)
+                        a_traiter.append(nouvel_etat)
+                    nouvelles_transitions[(etat_courant, symbole)] = nouvel_etat
+
+                    # Vérifier si c'est un état final
+                    if not nouveaux_etats_finaux & nouvel_etat:
+                        if any(etat in self.etats_finaux for etat in nouvel_etat):
+                            nouveaux_etats_finaux.add(nouvel_etat)
+
+        # Mettre à jour l'automate
+        self.etats = nouvel_etats
+        self.transitions = {
+                ):mrunthroughctionn(str)}]}]}
+        return self
+
+
+#MENU OPERATION
+
 
 def menu_op():
     a = entre_automate()
@@ -91,10 +150,11 @@ def menu_op():
                 "3. Rendre l'automate complet\n"
                 "4. Concaténation de 2 automates\n"
                 "5. Miroir d'un automate"
-                "6. Vérifier que l'automate est complet\n"
-                "7. Quitter\n\n"
+                "6. Vérifier que l'automate est déterministe\n"
+                "7. Rendre déterministe\n"
+                "8. Quitter\n\n"
             ))
-            if 1 <= x <= 7:
+            if 1 <= x <= 8:
                 break
             else:
                 print("Votre option ne fait pas partie des propositions ! Veuillez réessayer.")
@@ -123,10 +183,15 @@ def menu_op():
         print("Votre nouvel automate : ", miroir(a))
         menu_op()
     if (x == 6):
-        print("Vous avez choisi : Vérifier que l'automate est complet")
-        teb=entre_automate()
+        print("Vous avez choisi : Vérifier que l'automate est déterministe")
+        tab=entre_automate()
         print(estdeterministe(tab))
         menu_op()
     if (x == 7):
+        print("Vous avez choisi : Rendre déterministe")
+        tab=entre_automate()
+        print(rendre_deterministe(tab))
+        menu_op()
+    if (x == 8):
         print("Vous avez choisi : Quitter. Retour au menu principal !")
         return
