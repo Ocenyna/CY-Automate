@@ -2,6 +2,8 @@ from edition import menu_edition
 from operation import menu_op
 from expression import menu_expression
 
+#MENU PRINCIPAL
+
 def menu_principal():
     while True:
         try:
@@ -34,4 +36,6 @@ def menu_principal():
     if (x == 4):
         print("Vous avez choisi : Quitter. Au revoir !")
         return 0
+
+
 menu_principal()
