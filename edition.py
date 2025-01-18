@@ -1,4 +1,4 @@
-import numpy as np
+
 import os
 
 #DEFINITION D'AUTOMATE
@@ -30,16 +30,6 @@ Etats Finaux: {etats_finaux}
 
 #LIRE UNE MATRICE/AUTOMATE
 
-def entrematrice():
-    while True:
-        try:
-            # Demander à l'utilisateur d'entrer une matrice
-            x = np.array(eval(input("Veuillez entrer votre matrice : \n\n")))
-            # Si la saisie est valide, sortir de la boucle
-            break
-        except (ValueError, SyntaxError, NameError):
-            print("Entrée invalide. Veuillez entrer une matrice valide.")
-    return x
 
 def entre_automate():
     while True:
@@ -58,7 +48,6 @@ def entre_automate():
 
             # Si tout est correct, sortir de la boucle
             break
-            # Anticiper les erreurs
         except (SyntaxError, NameError):
             print("Entrée invalide. Veuillez entrer un automate valide (par exemple : [[1, 2, 3], [4, 5, 6], [7, 8, 9]]).")
         except ValueError as ve:
@@ -89,78 +78,64 @@ def affiche(matrice):
 
 #MODIFIER UN AUTOMATE
 
-def modifier_automate(automate):
-    while True :
-        try :
-            print("Modification de l'automate")
-            print("1. Ajouter un état")
-            print("2. Supprimer un état")
-            print("3. Ajouter une transition")
-            print("4. Supprimer une transition")
-            print("5. Retour au menu principal")
-            choix = int(input("Votre choix : "))
+def modifier_automate(self, action, **kwargs):
+        """
+        Modifie l'automate selon une action spécifique.
+        Actions possibles :
+            - ajouter_etat
+            - supprimer_etat
+            - ajouter_transition
+            - supprimer_transition
+            - changer_etat_initial
+            - ajouter_etat_final
+            - supprimer_etat_final
+        """
+        if action == "ajouter_etat":
+            self.etats.add(kwargs["etat"])
 
-            if (choix == "1"):
-                while True :
-                    try :
-                        etat = input("Entrez le nouvel état : ")
-                        if not isinstance(etat, Automate):
-                            raise TypeError("Il faut ecrire set([...])")
-                        else:
-                            break
-                    except ValueError:
-                        print("Il faut ecrire set([...])")
-                automate.etats.add(etat)
-                print(f"État {etat} ajouté.")
-                return automate
-
-            elif (choix == "2"):
-                while True :
-                    try :
-                        etat = input("Entrez l'état à supprimer : ")
-                        if not isinstance(etat, int):
-                            raise TypeError("Il faut ecrire set([...])")
-                        else:
-                            break
-                    except ValueError:
-                        print("Il faut ecrire set([...])")
-                automate.etats.discard(etat)
-                automate.transitions = {
-                    key: value
-                    for key, value in automate.transitions.items()
-                    if key[0] != etat and etat not in value
+        elif action == "supprimer_etat":
+            etat = kwargs["etat"]
+            if etat in self.etats:
+                self.etats.remove(etat)
+                # Supprimer les transitions associées
+                self.transitions = {
+                    (src, sym): dests
+                    for (src, sym), dests in self.transitions.items()
+                    if src != etat and etat not in dests
                 }
-                print(f"État {etat} supprimé.")
-                return automate
+                # Supprimer des états finaux si nécessaire
+                self.etats_finaux.discard(etat)
 
-            elif (choix == "3"):
-                source = input("Entrez l'état source : ")
-                symbole = input("Entrez le symbole : ")
-                cible = input("Entrez l'état cible : ")
-                if (source, symbole) not in automate.transitions:
-                    automate.transitions[(source, symbole)] = set()
-                automate.transitions[(source, symbole)].add(cible)
-                print(f"Transition ({source}, {symbole}, {cible}) ajoutée.")
-                return automate
+        elif action == "ajouter_transition":
+            src, sym, dest = kwargs["source"], kwargs["symbole"], kwargs["destination"]
+            if src in self.etats and dest in self.etats and sym in self.alphabet:
+                if (src, sym) not in self.transitions:
+                    self.transitions[(src, sym)] = set()
+                self.transitions[(src, sym)].add(dest)
 
-            elif (choix == "4"):
-                source = input("Entrez l'état source : ")
-                symbole = input("Entrez le symbole : ")
-                cible = input("Entrez l'état cible : ")
-                if (source, symbole) in automate.transitions:
-                    automate.transitions[(source, symbole)].discard(cible)
-                    if not automate.transitions[(source, symbole)]:
-                        del automate.transitions[(source, symbole)]
-                    print(f"Transition ({source}, {symbole}, {cible}) supprimée.")
-                    return automate
+        elif action == "supprimer_transition":
+            src, sym, dest = kwargs["source"], kwargs["symbole"], kwargs["destination"]
+            if (src, sym) in self.transitions and dest in self.transitions[(src, sym)]:
+                self.transitions[(src, sym)].remove(dest)
+                if not self.transitions[(src, sym)]:
+                    del self.transitions[(src, sym)]
 
-            elif (choix == "5"):
-                return 0
-            else:
-                print("Choix invalide.")
-        except ValueError:
-                print("Choix invalide.")
+        elif action == "changer_etat_initial":
+            etat = kwargs["etat"]
+            if etat in self.etats:
+                self.etat_initial = etat
 
+        elif action == "ajouter_etat_final":
+            etat = kwargs["etat"]
+            if etat in self.etats:
+                self.etats_finaux.add(etat)
+
+        elif action == "supprimer_etat_final":
+            etat = kwargs["etat"]
+            self.etats_finaux.discard(etat)
+
+        else:
+            raise ValueError("Action non reconnue : {}".format(action))
 
 #RECUPERER UN FICHIER
 
@@ -203,7 +178,6 @@ def charger_automate(fichier):
         etat_initial = lignes[4].split(":")[1].strip()
         etats_finaux = set(lignes[5].split(":")[1].strip().split())
         return Automate(etats, alphabet, transitions, etat_initial, etats_finaux)
-        # Anticiper les erreurs
     except FileNotFoundError:
         print("Fichier non trouvé.")
         return None
@@ -247,7 +221,7 @@ def menu_edition():
     if (x == 4):
         print("Vous avez choisi : Charger un automate")
         d = rec()
-        charger_automate(d)
+        charger_automate(fichier)
         menu_edition()
     if (x == 5):
         print("Vous avez choisi : Modifier un automate")
@@ -257,5 +231,4 @@ def menu_edition():
         menu_edition()
     if (x == 6):
         print("Vous avez choisi : Quitter. Retour au menu principal !")
-        return
-
+        return True
