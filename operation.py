@@ -131,7 +131,7 @@ def rendre_deterministe(self):
         # Mettre à jour l'automate
         self.etats = nouvel_etats
         self.transitions = {
-                ):mrunthroughctionn(str)}]}]}
+                mrunthroughctionn(str)}
         return self
 
 
