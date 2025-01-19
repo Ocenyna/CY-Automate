@@ -35,7 +35,7 @@ Les automates peuvent être représentés sous forme de dictionnaire ou de matri
 
 1. Clonez ce dépôt ou téléchargez le code source.
 2. Assurez-vous d'avoir Python installé (version 3.x recommandée).
-3. Exécutez le fichier principal pour démarrer le menu principal.
+3. Exécutez le makefile pour démarrer le menu principal.
 
 ```bash
 make
@@ -58,7 +58,7 @@ Ce README couvre les fonctionnalités principales de l'éditeur d'automates. N'h
 
 ## Fichiers
 
-- `menu.py` : fichier principal pour exécuter le programme.
+- `makefile` : fichier principal pour exécuter le programme.
 - `README.md` : ce fichier, contenant la documentation du projet.
 
 ## Licence
